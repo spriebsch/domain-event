@@ -62,6 +62,11 @@ final readonly class Topic
         return $this->name;
     }
 
+    public function equals(self $that): bool
+    {
+        return $this->asString() === $that->asString();
+    }
+
     public function asString(): string
     {
         return sprintf(

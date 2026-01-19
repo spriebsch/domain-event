@@ -7,6 +7,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 
 #[CoversClass(GenerateTopicMap::class)]
+#[UsesClass(MapToTopic::class)]
 final class GenerateTopicMapTest extends TestCase
 {
     public static function setUpBeforeClass(): void

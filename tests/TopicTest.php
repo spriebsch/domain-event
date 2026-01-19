@@ -62,4 +62,17 @@ final class TopicTest extends TestCase
             $topic
         );
     }
+
+    public function test_can_be_compared(): void
+    {
+        $topic = Topic::fromComponents(
+            'vendor',
+            'domain',
+            'context',
+            'name.with.dots'
+        );
+
+        $this->assertTrue($topic->equals($topic));
+        $this->assertFalse($topic->equals(Topic::fromString('vendor.domain.context.other')));
+    }
 }
