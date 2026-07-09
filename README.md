@@ -91,7 +91,7 @@ composer require spriebsch/domain-event
 
 ## Development
 
-You can use the `php-devbox` container () to run tests and static analysis.
+You can use the `php-devbox` container (https://github.com/spriebsch/php-devbox) to run tests and static analysis.
 
 ### Run Tests
 
