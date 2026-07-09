@@ -44,7 +44,7 @@ php-devbox phpunit
 After each task, run 
 
 ```bash
-php-devbox composer static-analysis
+php-devbox phpstan
 ```
 
 to perform static code analysis with PHPStan.
