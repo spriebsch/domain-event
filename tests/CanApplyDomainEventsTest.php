@@ -2,14 +2,12 @@
 
 namespace spriebsch\DomainEvent;
 
-use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\CoversTrait;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use RuntimeException;
 
-#[CoversClass(CanApplyDomainEventsTrait::class)]
-#[UsesClass(SimpleEvent::class)]
-#[UsesClass(EventA::class)]
+#[CoversTrait(CanApplyDomainEventsTrait::class)]
 final class CanApplyDomainEventsTest extends TestCase
 {
     public function test_apply_throws_exception_when_method_does_not_exist(): void
@@ -70,5 +68,24 @@ final class CanApplyDomainEventsTest extends TestCase
         $this->expectExceptionMessage('Method spriebsch\DomainEvent\TestAggregateWithNonVoidReturn::applySimpleEvent() must have void return type');
 
         $aggregate->applyEvent(new SimpleEvent());
+    }
+
+    public function test_apply_throws_exception_when_parameter_is_not_named_type(): void
+    {
+        $aggregate = new TestAggregateWithUnionType();
+
+        $this->expectException(RuntimeException::class);
+        $this->expectExceptionMessage('Method applySimpleEvent($event) parameter must be named type spriebsch\DomainEvent\TestAggregateWithUnionType::applySimpleEvent(spriebsch\DomainEvent\SimpleEvent $event): void');
+
+        $aggregate->applyEvent(new SimpleEvent());
+    }
+
+    public function test_apply_calls_apply_method(): void
+    {
+        $aggregate = new TestAggregateValid();
+
+        $aggregate->applyEvent(new SimpleEvent());
+
+        $this->assertTrue($aggregate->wasApplied());
     }
 }

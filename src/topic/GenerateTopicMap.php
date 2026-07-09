@@ -41,6 +41,13 @@ final readonly class GenerateTopicMap
         $result = [];
 
         foreach ($allClasses as $class) {
+            $reflection = new ReflectionClass($class);
+            $fileName = $reflection->getFileName();
+            $directoryPath = realpath($directory);
+            if ($fileName === false || $directoryPath === false || !str_starts_with($fileName, $directoryPath)) {
+                continue;
+            }
+
             $interfaces = class_implements($class);
 
             if (in_array(DomainEvent::class, $interfaces)) {

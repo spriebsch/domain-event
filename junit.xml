@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="/workspace/phpunit.xml" tests="41" assertions="60" errors="0" failures="0" skipped="0" time="0.035871">
+    <testsuite name="default" tests="41" assertions="60" errors="0" failures="0" skipped="0" time="0.035871">
+      <testsuite name="spriebsch\DomainEvent\CanApplyDomainEventsTest" file="/workspace/tests/CanApplyDomainEventsTest.php" tests="6" assertions="12" errors="0" failures="0" skipped="0" time="0.002552">
+        <testcase name="test_apply_throws_exception_when_method_has_no_parameters" file="/workspace/tests/CanApplyDomainEventsTest.php" line="25" class="spriebsch\DomainEvent\CanApplyDomainEventsTest" classname="spriebsch.DomainEvent.CanApplyDomainEventsTest" assertions="2" time="0.000912"/>
+        <testcase name="test_apply_throws_exception_when_method_has_too_many_parameters" file="/workspace/tests/CanApplyDomainEventsTest.php" line="35" class="spriebsch\DomainEvent\CanApplyDomainEventsTest" classname="spriebsch.DomainEvent.CanApplyDomainEventsTest" assertions="2" time="0.000442"/>
+        <testcase name="test_apply_throws_exception_when_parameter_has_no_type" file="/workspace/tests/CanApplyDomainEventsTest.php" line="45" class="spriebsch\DomainEvent\CanApplyDomainEventsTest" classname="spriebsch.DomainEvent.CanApplyDomainEventsTest" assertions="2" time="0.000369"/>
+        <testcase name="test_apply_throws_exception_when_parameter_has_wrong_type" file="/workspace/tests/CanApplyDomainEventsTest.php" line="55" class="spriebsch\DomainEvent\CanApplyDomainEventsTest" classname="spriebsch.DomainEvent.CanApplyDomainEventsTest" assertions="2" time="0.000336"/>
+        <testcase name="test_apply_throws_exception_when_method_has_non_void_return_type" file="/workspace/tests/CanApplyDomainEventsTest.php" line="65" class="spriebsch\DomainEvent\CanApplyDomainEventsTest" classname="spriebsch.DomainEvent.CanApplyDomainEventsTest" assertions="2" time="0.000259"/>
+        <testcase name="test_apply_throws_exception_when_method_does_not_exist" file="/workspace/tests/CanApplyDomainEventsTest.php" line="15" class="spriebsch\DomainEvent\CanApplyDomainEventsTest" classname="spriebsch.DomainEvent.CanApplyDomainEventsTest" assertions="2" time="0.000233"/>
+      </testsuite>
+      <testsuite name="spriebsch\DomainEvent\EventEnvelopeTest" file="/workspace/tests/EventEnvelopeTest.php" tests="13" assertions="13" errors="0" failures="0" skipped="0" time="0.007161">
+        <testcase name="test_CorrelationId_returns_null_when_method_returns_wrong_type" file="/workspace/tests/EventEnvelopeTest.php" line="68" class="spriebsch\DomainEvent\EventEnvelopeTest" classname="spriebsch.DomainEvent.EventEnvelopeTest" assertions="1" time="0.000746"/>
+        <testcase name="test_a_loaded_envelope_is_reported_as_persisted" file="/workspace/tests/EventEnvelopeTest.php" line="98" class="spriebsch\DomainEvent\EventEnvelopeTest" classname="spriebsch.DomainEvent.EventEnvelopeTest" assertions="1" time="0.003695"/>
+        <testcase name="test_wraps_event" file="/workspace/tests/EventEnvelopeTest.php" line="19" class="spriebsch\DomainEvent\EventEnvelopeTest" classname="spriebsch.DomainEvent.EventEnvelopeTest" assertions="1" time="0.000318"/>
+        <testcase name="test_has_EventId" file="/workspace/tests/EventEnvelopeTest.php" line="27" class="spriebsch\DomainEvent\EventEnvelopeTest" classname="spriebsch.DomainEvent.EventEnvelopeTest" assertions="1" time="0.000244"/>
+        <testcase name="test_has_Schema_Version" file="/workspace/tests/EventEnvelopeTest.php" line="34" class="spriebsch\DomainEvent\EventEnvelopeTest" classname="spriebsch.DomainEvent.EventEnvelopeTest" assertions="1" time="0.000276"/>
+        <testcase name="test_Schema_Version_defaults_to_1" file="/workspace/tests/EventEnvelopeTest.php" line="44" class="spriebsch\DomainEvent\EventEnvelopeTest" classname="spriebsch.DomainEvent.EventEnvelopeTest" assertions="1" time="0.000245"/>
+        <testcase name="test_has_CorrelationId" file="/workspace/tests/EventEnvelopeTest.php" line="51" class="spriebsch\DomainEvent\EventEnvelopeTest" classname="spriebsch.DomainEvent.EventEnvelopeTest" assertions="1" time="0.000287"/>
+        <testcase name="test_CorrelationId_is_optional" file="/workspace/tests/EventEnvelopeTest.php" line="61" class="spriebsch\DomainEvent\EventEnvelopeTest" classname="spriebsch.DomainEvent.EventEnvelopeTest" assertions="1" time="0.000243"/>
+        <testcase name="test_has_CausationId" file="/workspace/tests/EventEnvelopeTest.php" line="75" class="spriebsch\DomainEvent\EventEnvelopeTest" classname="spriebsch.DomainEvent.EventEnvelopeTest" assertions="1" time="0.000246"/>
+        <testcase name="test_CausationId_is_optional" file="/workspace/tests/EventEnvelopeTest.php" line="83" class="spriebsch\DomainEvent\EventEnvelopeTest" classname="spriebsch.DomainEvent.EventEnvelopeTest" assertions="1" time="0.000215"/>
+        <testcase name="test_a_new_envelope_is_reported_as_not_persisted" file="/workspace/tests/EventEnvelopeTest.php" line="91" class="spriebsch\DomainEvent\EventEnvelopeTest" classname="spriebsch.DomainEvent.EventEnvelopeTest" assertions="1" time="0.000213"/>
+        <testcase name="test_receivedAt_is_generated_on_envelope_creation" file="/workspace/tests/EventEnvelopeTest.php" line="119" class="spriebsch\DomainEvent\EventEnvelopeTest" classname="spriebsch.DomainEvent.EventEnvelopeTest" assertions="1" time="0.000220"/>
+        <testcase name="test_persistedAt_is_null_by_default" file="/workspace/tests/EventEnvelopeTest.php" line="127" class="spriebsch\DomainEvent\EventEnvelopeTest" classname="spriebsch.DomainEvent.EventEnvelopeTest" assertions="1" time="0.000213"/>
+      </testsuite>
+      <testsuite name="spriebsch\DomainEvent\PayloadTest" file="/workspace/tests/PayloadTest.php" tests="1" assertions="1" errors="0" failures="0" skipped="0" time="0.005992">
+        <testcase name="test_can_be_serialized_and_unserialized" file="/workspace/tests/PayloadTest.php" line="18" class="spriebsch\DomainEvent\PayloadTest" classname="spriebsch.DomainEvent.PayloadTest" assertions="1" time="0.005992"/>
+      </testsuite>
+      <testsuite name="spriebsch\DomainEvent\SerializationTest" file="/workspace/tests/SerializationTest.php" tests="1" assertions="1" errors="0" failures="0" skipped="0" time="0.003463">
+        <testcase name="test_serde_serializes_and_deserializes_object" file="/workspace/tests/SerializationTest.php" line="12" class="spriebsch\DomainEvent\SerializationTest" classname="spriebsch.DomainEvent.SerializationTest" assertions="1" time="0.003463"/>
+      </testsuite>
+      <testsuite name="spriebsch\DomainEvent\TopicTest" file="/workspace/tests/TopicTest.php" tests="8" assertions="10" errors="0" failures="0" skipped="0" time="0.001909">
+        <testcase name="test_name_can_have_dots" file="/workspace/tests/TopicTest.php" line="44" class="spriebsch\DomainEvent\TopicTest" classname="spriebsch.DomainEvent.TopicTest" assertions="1" time="0.000273"/>
+        <testcase name="test_can_be_compared" file="/workspace/tests/TopicTest.php" line="66" class="spriebsch\DomainEvent\TopicTest" classname="spriebsch.DomainEvent.TopicTest" assertions="2" time="0.000220"/>
+        <testcase name="test_can_be_created_from_components" file="/workspace/tests/TopicTest.php" line="51" class="spriebsch\DomainEvent\TopicTest" classname="spriebsch.DomainEvent.TopicTest" assertions="1" time="0.000272"/>
+        <testcase name="test_has_vendor" file="/workspace/tests/TopicTest.php" line="16" class="spriebsch\DomainEvent\TopicTest" classname="spriebsch.DomainEvent.TopicTest" assertions="1" time="0.000201"/>
+        <testcase name="test_has_domain" file="/workspace/tests/TopicTest.php" line="23" class="spriebsch\DomainEvent\TopicTest" classname="spriebsch.DomainEvent.TopicTest" assertions="1" time="0.000198"/>
+        <testcase name="test_has_context" file="/workspace/tests/TopicTest.php" line="30" class="spriebsch\DomainEvent\TopicTest" classname="spriebsch.DomainEvent.TopicTest" assertions="1" time="0.000192"/>
+        <testcase name="test_has_name" file="/workspace/tests/TopicTest.php" line="37" class="spriebsch\DomainEvent\TopicTest" classname="spriebsch.DomainEvent.TopicTest" assertions="1" time="0.000206"/>
+        <testcase name="test_fromString_throws_exception_on_invalid_format" file="/workspace/tests/TopicTest.php" line="79" class="spriebsch\DomainEvent\TopicTest" classname="spriebsch.DomainEvent.TopicTest" assertions="2" time="0.000348"/>
+      </testsuite>
+      <testsuite name="spriebsch\DomainEvent\EnvelopeErrorTest" file="/workspace/tests/EnvelopeErrorTest.php" tests="2" assertions="4" errors="0" failures="0" skipped="0" time="0.000866">
+        <testcase name="test_correlationId_throws_exception_when_method_has_multiple_attributes" file="/workspace/tests/EnvelopeErrorTest.php" line="25" class="spriebsch\DomainEvent\EnvelopeErrorTest" classname="spriebsch.DomainEvent.EnvelopeErrorTest" assertions="2" time="0.000476"/>
+        <testcase name="test_creating_envelope_without_topic_attribute_throws" file="/workspace/tests/EnvelopeErrorTest.php" line="17" class="spriebsch\DomainEvent\EnvelopeErrorTest" classname="spriebsch.DomainEvent.EnvelopeErrorTest" assertions="2" time="0.000390"/>
+      </testsuite>
+      <testsuite name="spriebsch\DomainEvent\TopicMapTest" file="/workspace/tests/TopicMapTest.php" tests="5" assertions="8" errors="0" failures="0" skipped="0" time="0.011410">
+        <testcase name="test_fromFile_throws_exception_if_not_a_file" file="/workspace/tests/TopicMapTest.php" line="28" class="spriebsch\DomainEvent\TopicMapTest" classname="spriebsch.DomainEvent.TopicMapTest" assertions="2" time="0.000658"/>
+        <testcase name="test_fromFile_throws_exception_if_file_does_not_return_array" file="/workspace/tests/TopicMapTest.php" line="36" class="spriebsch\DomainEvent\TopicMapTest" classname="spriebsch.DomainEvent.TopicMapTest" assertions="2" time="0.009416"/>
+        <testcase name="test_topicFor_throws_exception_if_no_topic_found" file="/workspace/tests/TopicMapTest.php" line="46" class="spriebsch\DomainEvent\TopicMapTest" classname="spriebsch.DomainEvent.TopicMapTest" assertions="2" time="0.000670"/>
+        <testcase name="test_fromArray_and_classFor" file="/workspace/tests/TopicMapTest.php" line="56" class="spriebsch\DomainEvent\TopicMapTest" classname="spriebsch.DomainEvent.TopicMapTest" assertions="1" time="0.000342"/>
+        <testcase name="test_topicFor_returns_topic" file="/workspace/tests/TopicMapTest.php" line="63" class="spriebsch\DomainEvent\TopicMapTest" classname="spriebsch.DomainEvent.TopicMapTest" assertions="1" time="0.000324"/>
+      </testsuite>
+      <testsuite name="spriebsch\DomainEvent\AbstractIdTest" file="/workspace/tests/AbstractIdTest.php" tests="4" assertions="4" errors="0" failures="0" skipped="0" time="0.000852">
+        <testcase name="test_generate_creates_valid_uuidv4_string" file="/workspace/tests/AbstractIdTest.php" line="14" class="spriebsch\DomainEvent\AbstractIdTest" classname="spriebsch.DomainEvent.AbstractIdTest" assertions="1" time="0.000249"/>
+        <testcase name="test_from_round_trips_string_value" file="/workspace/tests/AbstractIdTest.php" line="24" class="spriebsch\DomainEvent\AbstractIdTest" classname="spriebsch.DomainEvent.AbstractIdTest" assertions="1" time="0.000225"/>
+        <testcase name="test_equals_with_null_returns_false" file="/workspace/tests/AbstractIdTest.php" line="32" class="spriebsch\DomainEvent\AbstractIdTest" classname="spriebsch.DomainEvent.AbstractIdTest" assertions="1" time="0.000201"/>
+        <testcase name="test_fromUUID_accepts_UUIDv4_instance" file="/workspace/tests/AbstractIdTest.php" line="39" class="spriebsch\DomainEvent\AbstractIdTest" classname="spriebsch.DomainEvent.AbstractIdTest" assertions="1" time="0.000177"/>
+      </testsuite>
+      <testsuite name="spriebsch\DomainEvent\GenerateTopicMapTest" file="/workspace/tests/GenerateTopicMapTest.php" tests="1" assertions="7" errors="0" failures="0" skipped="0" time="0.001665">
+        <testcase name="test_generate_topic_map" file="/workspace/tests/GenerateTopicMapTest.php" line="31" class="spriebsch\DomainEvent\GenerateTopicMapTest" classname="spriebsch.DomainEvent.GenerateTopicMapTest" assertions="7" time="0.001665"/>
+      </testsuite>
+    </testsuite>
+  </testsuite>
+</testsuites>

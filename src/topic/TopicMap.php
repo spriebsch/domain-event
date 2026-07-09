@@ -11,9 +11,6 @@ final class TopicMap
     public static function fromFile(string $path): self
     {
         $fs = Filesystem::from($path);
-        if (!$fs->isFile()) {
-            throw new RuntimeException(sprintf('Path "%s" is not a file', $path));
-        }
         /** @var FsFile $fs */
         $data = $fs->require();
         if (!is_array($data)) {

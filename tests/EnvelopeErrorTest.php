@@ -31,4 +31,11 @@ final class EnvelopeErrorTest extends TestCase
 
         $envelope->correlationId();
     }
+
+    public function test_correlationId_returns_null_when_method_returns_wrong_type(): void
+    {
+        $envelope = Envelope::from(new EventWithWrongCorrelationIdType());
+
+        $this->assertNull($envelope->correlationId());
+    }
 }

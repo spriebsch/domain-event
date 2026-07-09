@@ -8,7 +8,6 @@ use PHPUnit\Framework\TestCase;
 use RuntimeException;
 
 #[CoversClass(TopicMap::class)]
-#[UsesClass(SimpleEvent::class)]
 final class TopicMapTest extends TestCase
 {
     private string $tempFile;
@@ -53,17 +52,19 @@ final class TopicMapTest extends TestCase
         $topicMap->topicFor(new SimpleEvent());
     }
 
-    public function test_fromArray_and_classFor(): void
-    {
-        $topicMap = TopicMap::fromArray(['topic' => 'class']);
-
-        $this->assertSame('class', $topicMap->classFor('topic'));
-    }
-
     public function test_topicFor_returns_topic(): void
     {
         $topicMap = TopicMap::fromArray(['topic' => SimpleEvent::class]);
 
         $this->assertSame('topic', $topicMap->topicFor(new SimpleEvent()));
+    }
+
+    public function test_fromFile_returns_TopicMap(): void
+    {
+        file_put_contents($this->tempFile, '<?php return ["topic" => "class"];');
+
+        $topicMap = TopicMap::fromFile($this->tempFile);
+
+        $this->assertSame('class', $topicMap->classFor('topic'));
     }
 }

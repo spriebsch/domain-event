@@ -96,3 +96,39 @@ final class TestAggregateWithNonVoidReturn
         return 'foo';
     }
 }
+
+final class TestAggregateWithUnionType
+{
+    use CanApplyDomainEventsTrait;
+
+    public function applyEvent(DomainEvent $event): void
+    {
+        $this->apply($event);
+    }
+
+    private function applySimpleEvent(SimpleEvent|EventA $event): void
+    {
+    }
+}
+
+final class TestAggregateValid
+{
+    use CanApplyDomainEventsTrait;
+
+    private bool $applied = false;
+
+    public function applyEvent(DomainEvent $event): void
+    {
+        $this->apply($event);
+    }
+
+    public function wasApplied(): bool
+    {
+        return $this->applied;
+    }
+
+    private function applySimpleEvent(SimpleEvent $event): void
+    {
+        $this->applied = true;
+    }
+}

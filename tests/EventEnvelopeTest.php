@@ -130,4 +130,32 @@ final class EventEnvelopeTest extends TestCase
 
         $this->assertNull($envelope->persistedAt());
     }
+
+    public function test_persistedAt_is_returned_when_persisted(): void
+    {
+        $topic = Topic::fromString('spriebsch.domain.context.name');
+        $receivedAt = Timestamp::generate();
+        $persistedAt = Timestamp::generate();
+        $event = new SimpleEvent();
+        $json = (new \Crell\Serde\SerdeCommon())->serialize($event, 'json');
+
+        $envelope = Envelope::fromStorage(
+            EventId::generate(),
+            $receivedAt,
+            $persistedAt,
+            $json,
+            SimpleEvent::class,
+            $topic
+        );
+
+        $this->assertSame($persistedAt, $envelope->persistedAt());
+    }
+
+    public function test_topic_returns_topic(): void
+    {
+        $event = new SimpleEvent();
+        $envelope = Envelope::from($event);
+
+        $this->assertSame('spriebsch.domainEvent.test.simple', $envelope->topic()->asString());
+    }
 }

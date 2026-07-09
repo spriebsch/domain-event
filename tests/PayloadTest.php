@@ -66,4 +66,13 @@ final class PayloadTest extends TestCase
 
         $this->assertEquals($event, $recreated->payload()->event());
     }
+
+    public function test_envelope(): void
+    {
+        $event = new SimpleEvent();
+        $envelope = Envelope::from($event);
+        $payload = $envelope->payload();
+
+        $this->assertSame($envelope, $payload->envelope());
+    }
 }

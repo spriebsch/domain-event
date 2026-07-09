@@ -45,7 +45,7 @@ trait CanApplyDomainEventsTrait
         if (count($parameters) === 0) {
             throw new RuntimeException(
                 sprintf(
-                    'Method %s() has no parameters, expected %s()',
+                    'Method %s() has no parameters, expected %s',
                     $method,
                     $this->expectedMethodNameAndSignature($method, $event)
                 )
@@ -55,7 +55,7 @@ trait CanApplyDomainEventsTrait
         if (count($parameters) > 1) {
             throw new RuntimeException(
                 sprintf(
-                    'Method %s(...) has too many parameters, expected %s()',
+                    'Method %s(...) has too many parameters, expected %s',
                     $method,
                     $this->expectedMethodNameAndSignature($method, $event)
                 )
@@ -100,27 +100,6 @@ trait CanApplyDomainEventsTrait
         }
     }
 
-    private function actualMethodNameAndSignature(string $method): string
-    {
-        $result = $method . '(';
-
-        $reflectionMethod = new ReflectionMethod($this::class, $method);
-
-        $parameters = $reflectionMethod->getParameters();
-
-        foreach ($parameters as $parameter) {
-            $type = $parameter->getType();
-            if ($type instanceof ReflectionNamedType) {
-                $result .= $type->getName() . ' ';
-            }
-
-            $result .= '$' . $parameter->getName();
-        }
-
-        $result .= ')';
-
-        return $result;
-    }
 
     private function ensureVoidReturnType(string $method, DomainEvent $event): void
     {
