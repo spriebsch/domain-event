@@ -23,10 +23,6 @@ final readonly class Payload
 
     public function asJson(): string
     {
-        $json = (new SerdeCommon())->serialize($this->event, format: 'json');
-        if (!is_string($json)) {
-             throw new \RuntimeException('Failed to serialize event to JSON');
-        }
-        return $json;
+        return (new SerdeCommon())->serialize($this->event, format: 'json');
     }
 }

@@ -8,10 +8,6 @@ final readonly class JsonDomainEventSerializer implements DomainEventSerializer
 {
     public function serialize(DomainEvent $event): string
     {
-        $json = (new SerdeCommon())->serialize($event, format: 'json');
-        if (!is_string($json)) {
-            throw new \RuntimeException('Failed to serialize domain event');
-        }
-        return $json;
+        return new SerdeCommon()->serialize($event, format: 'json');
     }
 }
