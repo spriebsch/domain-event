@@ -1,6 +1,6 @@
 {
   "name": "spriebsch/domain-event",
-  "description": "The best way to work with Domain Events",
+  "description": "Domain Events, Done Right.",
   "type": "library",
   "authors": [
     {
@@ -11,28 +11,23 @@
   ],
   "license": "BSD-3-Clause",
   "require": {
-    "php": ">=8.4",
-    "crell/serde": "^1.5",
+    "php": ">=8.5",
+    "crell/serde": "^1.6",
     "spriebsch/timestamp": "^1.1",
     "spriebsch/uuid": "^2.0",
     "spriebsch/filesystem": "^1.0"
   },
   "autoload": {
     "classmap": [
-      "src"
+      "src",
+      "tests"
     ]
   },
   "bin": [
     "bin/generate-topic-map.php"
   ],
   "scripts": {
-    "post-autoload-dump": "@generate-autoloaders",
     "clean": "rm -rf build",
-    "generate-autoloaders": [
-      "phpab -q --output src/autoload.php src",
-      "phpab -q --output tests/autoload.php tests"
-    ],
-    "static-analysis": "phpstan analyse src tests",
     "test": [
       "if [ ! -f \"phpunit.phar\" ]; then cp /usr/local/bin/phpunit phpunit.phar; fi",
       "phpunit"
