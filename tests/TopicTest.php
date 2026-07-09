@@ -76,6 +76,13 @@ final class TopicTest extends TestCase
         $this->assertFalse($topic->equals(Topic::fromString('vendor.domain.context.other')));
     }
 
+    public function test_asString_returns_string_representation(): void
+    {
+        $topic = Topic::fromString('vendor.domain.context.name');
+
+        $this->assertSame('vendor.domain.context.name', $topic->asString());
+    }
+
     public function test_fromString_throws_exception_on_invalid_format(): void
     {
         $this->expectException(\RuntimeException::class);

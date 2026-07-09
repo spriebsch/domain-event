@@ -38,4 +38,24 @@ final class EnvelopeErrorTest extends TestCase
 
         $this->assertNull($envelope->correlationId());
     }
+
+    public function test_determineTopic_returns_topic_when_passed_in(): void
+    {
+        $topic = Topic::fromString('vendor.domain.context.name');
+        $event = new SimpleEvent();
+        $receivedAt = \spriebsch\timestamp\Timestamp::generate();
+        $persistedAt = \spriebsch\timestamp\Timestamp::generate();
+        $json = (new \Crell\Serde\SerdeCommon())->serialize($event, 'json');
+
+        $envelope = Envelope::fromStorage(
+            EventId::generate(),
+            $receivedAt,
+            $persistedAt,
+            $json,
+            SimpleEvent::class,
+            $topic
+        );
+
+        $this->assertSame($topic, $envelope->topic());
+    }
 }

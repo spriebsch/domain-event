@@ -91,4 +91,25 @@ final class ValidEvent implements DomainEvent {}');
         rmdir($tempDir . '/sub');
         rmdir($tempDir);
     }
+
+    public function test_for_handles_classes_without_MapToTopic_attribute(): void
+    {
+        $tempDir = sys_get_temp_dir() . '/topic_map_no_attr_' . uniqid();
+        mkdir($tempDir);
+
+        file_put_contents($tempDir . '/NoAttrEvent.php', '<?php
+namespace spriebsch\DomainEvent\TempNoAttr;
+use spriebsch\DomainEvent\DomainEvent;
+
+final class NoAttrEvent implements DomainEvent {}');
+
+        GenerateTopicMap::for($tempDir);
+
+        $result = require $tempDir . '/TopicMap.php';
+        $this->assertCount(0, $result);
+
+        unlink($tempDir . '/NoAttrEvent.php');
+        unlink($tempDir . '/TopicMap.php');
+        rmdir($tempDir);
+    }
 }
