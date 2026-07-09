@@ -21,4 +21,14 @@ final class EnvelopeErrorTest extends TestCase
 
         Envelope::from(new EventWithoutTopic());
     }
+
+    public function test_correlationId_throws_exception_when_method_has_multiple_attributes(): void
+    {
+        $envelope = Envelope::from(new EventWithTwoCorrelationIds());
+
+        $this->expectException(\RuntimeException::class);
+        $this->expectExceptionMessage('Method has more than one UseAsCorrelationId attribute');
+
+        $envelope->correlationId();
+    }
 }

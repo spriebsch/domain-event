@@ -6,13 +6,8 @@ namespace spriebsch\DomainEvent;
 final readonly class EventWithTwoCorrelationIds implements DomainEvent
 {
     #[UseAsCorrelationId]
-    public function idA(): TestId
-    {
-        return TestId::generate();
-    }
-
     #[UseAsCorrelationId]
-    public function idB(): TestId
+    public function idA(): TestId
     {
         return TestId::generate();
     }

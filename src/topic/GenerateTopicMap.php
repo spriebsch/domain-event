@@ -20,6 +20,7 @@ final readonly class GenerateTopicMap
         $iterator = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($directory));
 
         foreach ($iterator as $file) {
+            /** @var \SplFileInfo $file */
             if ($file->isDir()) {
                 continue;
             }

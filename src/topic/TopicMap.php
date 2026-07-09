@@ -8,7 +8,7 @@ use spriebsch\filesystem\File as FsFile;
 
 final class TopicMap
 {
-    public function fromFile(string $path): self
+    public static function fromFile(string $path): self
     {
         $fs = Filesystem::from($path);
         if (!$fs->isFile()) {
@@ -22,11 +22,13 @@ final class TopicMap
         return self::fromArray($data);
     }
 
-    public function fromArray(array $topicMap): self
+    /** @param array<string, string> $topicMap */
+    public static function fromArray(array $topicMap): self
     {
         return new self($topicMap);
     }
 
+    /** @param array<string, string> $topicMap */
     private function __construct(private array $topicMap) {}
 
     public function classFor(string $topic): string

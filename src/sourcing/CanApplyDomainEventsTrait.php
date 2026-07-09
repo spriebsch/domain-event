@@ -29,8 +29,7 @@ trait CanApplyDomainEventsTrait
         if (!method_exists($this, $method)) {
             throw new RuntimeException(
                 sprintf(
-                    'No method %s::%s',
-                    $this::class,
+                    'No method %s',
                     $this->expectedMethodNameAndSignature($method, $event)
                 )
             );

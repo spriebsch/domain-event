@@ -75,4 +75,12 @@ final class TopicTest extends TestCase
         $this->assertTrue($topic->equals($topic));
         $this->assertFalse($topic->equals(Topic::fromString('vendor.domain.context.other')));
     }
+
+    public function test_fromString_throws_exception_on_invalid_format(): void
+    {
+        $this->expectException(\RuntimeException::class);
+        $this->expectExceptionMessage('Invalid topic format: invalid.topic. Expected vendor.domain.context.name');
+
+        Topic::fromString('invalid.topic');
+    }
 }
