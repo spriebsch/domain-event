@@ -5,6 +5,3 @@ parameters:
     - tests
   bootstrapFiles:
     - phpunit.phar
-  excludePaths:
-    - src/autoload.php
-    - tests/autoload.php
