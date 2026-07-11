@@ -42,6 +42,26 @@ final class TopicMapTest extends TestCase
         TopicMap::fromFile($this->tempFile);
     }
 
+    public function test_fromFile_throws_exception_if_key_is_not_string(): void
+    {
+        file_put_contents($this->tempFile, '<?php return [1 => "class"];');
+
+        $this->expectException(RuntimeException::class);
+        $this->expectExceptionMessage('Topic map key must be string.');
+
+        TopicMap::fromFile($this->tempFile);
+    }
+
+    public function test_fromFile_throws_exception_if_value_is_not_string(): void
+    {
+        file_put_contents($this->tempFile, '<?php return ["topic" => 1];');
+
+        $this->expectException(RuntimeException::class);
+        $this->expectExceptionMessage('Topic map value must be a string.');
+
+        TopicMap::fromFile($this->tempFile);
+    }
+
     public function test_topicFor_throws_exception_if_no_topic_found(): void
     {
         $topicMap = TopicMap::fromArray([]);
