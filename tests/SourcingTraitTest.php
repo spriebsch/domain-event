@@ -17,10 +17,12 @@ final class SourcingTraitTest extends TestCase
         $event = new SimpleEvent();
 
         $aggregate->doSomething($event);
+        $aggregate->doSomething($event);
 
         $events = $aggregate->newEvents();
-        $this->assertCount(1, $events);
+        $this->assertCount(2, $events);
         $this->assertSame($event, $events[0]);
+        $this->assertSame($event, $events[1]);
         $this->assertTrue($aggregate->wasApplied());
 
         $this->assertCount(0, $aggregate->newEvents());
