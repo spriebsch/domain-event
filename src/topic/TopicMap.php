@@ -19,8 +19,11 @@ final readonly class TopicMap
 
         $topicMap = [];
         foreach ($data as $topic => $class) {
-            if (!is_string($topic) || !is_string($class)) {
-                throw new RuntimeException('Topic map array must be array<string, string>');
+            if (!is_string($topic)) {
+                throw new RuntimeException('Topic map key must be string.');
+            }
+            if (!is_string($class)) {
+                throw new RuntimeException('Topic map value must be a string.');
             }
             $topicMap[$topic] = $class;
         }
