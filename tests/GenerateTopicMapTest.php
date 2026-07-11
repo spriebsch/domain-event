@@ -41,14 +41,18 @@ final class GenerateTopicMapTest extends TestCase
 
         $this->assertFileExists($map);
 
+        /** @var array<string, class-string> $result */
         $this->assertArrayHasKey('spriebsch.domainEvent.topicmap.a', $result);
-        $this->assertSame(A::class, $result['spriebsch.domainEvent.topicmap.a']);
+        $classA = 'spriebsch\DomainEvent\A';
+        $this->assertSame($classA, $result['spriebsch.domainEvent.topicmap.a']);
 
         $this->assertArrayHasKey('spriebsch.domainEvent.topicmap.b', $result);
-        $this->assertSame(B::class, $result['spriebsch.domainEvent.topicmap.b']);
+        $classB = 'spriebsch\DomainEvent\B';
+        $this->assertSame($classB, $result['spriebsch.domainEvent.topicmap.b']);
 
         $this->assertArrayHasKey('spriebsch.domainEvent.topicmap.c', $result);
-        $this->assertSame(C::class, $result['spriebsch.domainEvent.topicmap.c']);
+        $classC = 'spriebsch\DomainEvent\C';
+        $this->assertSame($classC, $result['spriebsch.domainEvent.topicmap.c']);
     }
 
     public function test_for_throws_exception_when_directory_does_not_exist(): void
@@ -106,6 +110,7 @@ final class NoAttrEvent implements DomainEvent {}');
         GenerateTopicMap::for($tempDir);
 
         $result = require $tempDir . '/TopicMap.php';
+        assert(is_iterable($result));
         $this->assertCount(0, $result);
 
         unlink($tempDir . '/NoAttrEvent.php');

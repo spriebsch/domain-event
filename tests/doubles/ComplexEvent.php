@@ -7,6 +7,9 @@ use Crell\Serde\Attributes\StaticTypeMap;
 #[MapToTopic('spriebsch.domainEvent.test.complex')]
 final readonly class ComplexEvent implements TestEvent
 {
+    /**
+     * @param array<mixed, mixed> $array
+     */
     public function __construct(
         private TestId          $id,
         private bool            $bool,
@@ -33,7 +36,14 @@ final readonly class ComplexEvent implements TestEvent
     public function array(): array
     {
         // Ensure keys are sequential ints and values are strings for static analysis
-        return array_values(array_map(static fn($v): string => (string) $v, $this->array));
+        $mapped = array_map(static function ($v): string {
+            if (is_string($v) || is_numeric($v) || (is_object($v) && method_exists($v, '__toString'))) {
+                return (string) $v;
+            }
+            return 'non-stringable value';
+        }, $this->array);
+
+        return array_values($mapped);
     }
 
     public function valueObject(): SomeValueObject

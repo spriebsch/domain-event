@@ -37,4 +37,5 @@ final readonly class SomeValueObject
     public function enum(): SomeEnum { return $this->enum; }
 
     public function backedEnum(): SomeBackedEnum { return $this->backedEnum; }
+    public function nestedValueObject(): NestedValueObject { return $this->nestedValueObject; }
 }

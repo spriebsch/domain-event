@@ -66,10 +66,13 @@ final class TestAggregateSourced
 {
     use IsEventSourcedTrait;
 
+    /** @var array<int, DomainEvent> */
     private array $appliedEvents = [];
 
     public function __construct(DomainEvent ...$events)
     {
+        // Parameter is used by trait which is not visible to PHPStan
+        unset($events);
     }
 
     public function applySimpleEvent(SimpleEvent $event): void
@@ -77,6 +80,7 @@ final class TestAggregateSourced
         $this->appliedEvents[] = $event;
     }
 
+    /** @return array<int, DomainEvent> */
     public function appliedEvents(): array
     {
         return $this->appliedEvents;

@@ -11,22 +11,22 @@ readonly abstract class AbstractId implements UUID
     #[StaticTypeMap(key: 'type', map: ['uuidv4' => UUIDv4::class])]
     protected UUID $uuid; // See https://github.com/Crell/Serde/issues/91
 
-    public static function generate(): static
+    final public static function generate(): static
     {
         return new static(UUIDv4::generate());
     }
 
-    public static function from(string $uuid): static
+    final public static function from(string $uuid): static
     {
         return new static(UUIDv4::from($uuid));
     }
 
-    public static function fromUUID(UUID $uuid): static
+    final public static function fromUUID(UUID $uuid): static
     {
         return new static($uuid);
     }
 
-    private function __construct(UUID $uuid)
+    final private function __construct(UUID $uuid)
     {
         $this->uuid = $uuid;
     }

@@ -49,12 +49,15 @@ final readonly class Envelope
         Timestamp      $receivedAt,
         Timestamp      $persistedAt,
         string         $json,
+        /** @var class-string<DomainEvent> $class */
         string         $class,
         Topic          $topic,
         ?CausationId   $causationId = null,
         ?SchemaVersion $schemaVersion = null,
     ): self
     {
+        assert(is_subclass_of($class, DomainEvent::class));
+
         return new self(
             $eventId,
             $receivedAt,

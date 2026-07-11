@@ -23,6 +23,8 @@ final readonly class Payload
 
     public function asJson(): string
     {
-        return (new SerdeCommon())->serialize($this->event, format: 'json');
+        $json = (new SerdeCommon())->serialize($this->event, format: 'json');
+        assert(is_string($json));
+        return $json;
     }
 }

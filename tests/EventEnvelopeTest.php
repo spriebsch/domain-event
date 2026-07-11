@@ -137,6 +137,7 @@ final class EventEnvelopeTest extends TestCase
         $receivedAt = Timestamp::generate();
         $persistedAt = Timestamp::generate();
         $event = new SimpleEvent();
+        /** @var string $json */
         $json = (new \Crell\Serde\SerdeCommon())->serialize($event, 'json');
 
         $envelope = Envelope::fromStorage(

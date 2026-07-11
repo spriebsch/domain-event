@@ -45,6 +45,7 @@ final class EnvelopeErrorTest extends TestCase
         $event = new SimpleEvent();
         $receivedAt = \spriebsch\timestamp\Timestamp::generate();
         $persistedAt = \spriebsch\timestamp\Timestamp::generate();
+        /** @var string $json */
         $json = (new \Crell\Serde\SerdeCommon())->serialize($event, 'json');
 
         $envelope = Envelope::fromStorage(

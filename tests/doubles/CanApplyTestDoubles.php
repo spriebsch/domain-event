@@ -63,6 +63,7 @@ final class TestAggregateWithNoType
         $this->apply($event);
     }
 
+    /** @param mixed $event */
     private function applySimpleEvent($event): void
     {
     }

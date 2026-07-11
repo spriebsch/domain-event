@@ -19,7 +19,6 @@ final class JsonSerdeTest extends TestCase
 
         $json = $serializer->serialize($event);
 
-        $this->assertIsString($json);
         $this->assertStringContainsString($id->asString(), $json);
     }
 
@@ -47,6 +46,9 @@ final class JsonSerdeTest extends TestCase
 
         // We use a class that is NOT a DomainEvent but is an object
         // TestId is an object but doesn't implement DomainEvent
-        $deserializer->deserialize($json, TestId::class);
+        /** @var mixed $class */
+        $class = TestId::class;
+        /** @var class-string<DomainEvent> $class */
+        $deserializer->deserialize($json, $class);
     }
 }
