@@ -34,10 +34,10 @@ final readonly class Topic
             );
         }
 
+        $vendor = $parts[0];
+        $domain = $parts[1];
+        $context = $parts[2];
         $name = implode('.', array_slice($parts, 3));
-        array_splice($parts, 3);
-
-        [$vendor, $domain, $context] = $parts;
 
         return new self($vendor, $domain, $context, $name);
     }

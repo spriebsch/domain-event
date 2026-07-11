@@ -131,10 +131,6 @@ final readonly class Envelope
 
     public function persistedAt(): ?Timestamp
     {
-        if (!$this->isPersisted()) {
-            return null;
-        }
-
         return $this->persistedAt;
     }
 

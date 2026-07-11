@@ -129,6 +129,7 @@ final class EventEnvelopeTest extends TestCase
         $envelope = Envelope::from(new SimpleEvent());
 
         $this->assertNull($envelope->persistedAt());
+        $this->assertFalse($envelope->isPersisted());
     }
 
     public function test_persistedAt_is_returned_when_persisted(): void

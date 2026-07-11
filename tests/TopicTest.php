@@ -46,6 +46,9 @@ final class TopicTest extends TestCase
         $topic = Topic::fromString('vendor.domain.context.name.with.dots');
 
         $this->assertSame('name.with.dots', $topic->name());
+        $this->assertSame('vendor', $topic->vendor());
+        $this->assertSame('domain', $topic->domain());
+        $this->assertSame('context', $topic->context());
     }
 
     public function test_can_be_created_from_components(): void
