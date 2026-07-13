@@ -1,3 +1,11 @@
+/.git                   export-ignore
 /.junie                 export-ignore
 /.gitattributes         export-ignore
-/tests                   export-ignore
+/.gitignore             export-ignore
+/.phpunit.cache         export-ignore
+/build                  export-ignore
+/tests                  export-ignore
+/phpunit.xml            export-ignore
+/phpunit.phar           export-ignore
+/phpstan.neon           export-ignore
+/infection.json5        export-ignore
