@@ -12,7 +12,13 @@ final class GenerateTopicMapTest extends TestCase
 {
     public static function setUpBeforeClass(): void
     {
-        $map = __DIR__ . '/../testdata/TopicMap.php';
+        $directory = __DIR__ . '/../build/testdata';
+
+        if (!is_dir($directory)) {
+            mkdir($directory, 0777, true);
+        }
+
+        $map = $directory . '/TopicMap.php';
 
         if (is_file($map)) {
             unlink($map);
@@ -21,7 +27,7 @@ final class GenerateTopicMapTest extends TestCase
 
     public static function tearDownAfterClass(): void
     {
-        $map = __DIR__ . '/../testdata/TopicMap.php';
+        $map = __DIR__ . '/../build/testdata/TopicMap.php';
 
         if (is_file($map)) {
             // unlink($map);
@@ -30,9 +36,19 @@ final class GenerateTopicMapTest extends TestCase
 
     public function test_generate_topic_map(): void
     {
-        $map = __DIR__ . '/../testdata/TopicMap.php';
+        $directory = __DIR__ . '/../build/testdata';
+        if (!is_dir($directory)) {
+            mkdir($directory, 0777, true);
+        }
 
-        GenerateTopicMap::for(__DIR__ . '/../testdata');
+        file_put_contents($directory . '/A.php', '<?php namespace spriebsch\DomainEvent; #[MapToTopic("spriebsch.domainEvent.topicmap.a")] final class A implements DomainEvent {}');
+        mkdir($directory . '/nested/subdirectory', 0777, true);
+        file_put_contents($directory . '/nested/B.php', '<?php namespace spriebsch\DomainEvent; #[MapToTopic("spriebsch.domainEvent.topicmap.b")] final class B implements DomainEvent {}');
+        file_put_contents($directory . '/nested/subdirectory/C.php', '<?php namespace spriebsch\DomainEvent; #[MapToTopic("spriebsch.domainEvent.topicmap.c")] final class C implements DomainEvent {}');
+
+        $map = $directory . '/TopicMap.php';
+
+        GenerateTopicMap::for($directory);
 
         $result = require $map;
         if (!is_array($result)) {
