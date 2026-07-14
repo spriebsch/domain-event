@@ -260,20 +260,20 @@
         },
         {
             "name": "spriebsch/money",
-            "version": "2.1.0",
+            "version": "2.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spriebsch/money.git",
-                "reference": "c915bfb1b20ae8833ddda5095d5777a98b9cc5f9"
+                "reference": "322138d582c2d1c0d2aaa68880f97ddaf0ebc260"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spriebsch/money/zipball/c915bfb1b20ae8833ddda5095d5777a98b9cc5f9",
-                "reference": "c915bfb1b20ae8833ddda5095d5777a98b9cc5f9",
+                "url": "https://api.github.com/repos/spriebsch/money/zipball/322138d582c2d1c0d2aaa68880f97ddaf0ebc260",
+                "reference": "322138d582c2d1c0d2aaa68880f97ddaf0ebc260",
                 "shasum": ""
             },
             "require": {
-                "php": ">=8.4"
+                "php": ">=8.5"
             },
             "type": "library",
             "autoload": {
@@ -289,12 +289,12 @@
                     "homepage": "https://www.priebsch.de"
                 }
             ],
-            "description": "The Money library for PHP",
+            "description": "Money, modeled correctly.",
             "support": {
                 "issues": "https://github.com/spriebsch/money/issues",
-                "source": "https://github.com/spriebsch/money/tree/2.1.0"
+                "source": "https://github.com/spriebsch/money/tree/2.2.0"
             },
-            "time": "2025-10-02T06:17:29+00:00"
+            "time": "2026-07-14T20:04:56+00:00"
         },
         {
             "name": "spriebsch/timestamp",

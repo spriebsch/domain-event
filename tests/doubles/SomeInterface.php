@@ -7,10 +7,8 @@ use Crell\Serde\Attributes\StaticTypeMap;
 #[StaticTypeMap(
     key: 'type',
     map: [
-        ImplementsInterface::class => ImplementsInterface::class,
-        SecondInterfaceImplementation::class => SecondInterfaceImplementation::class,
+        'interface'       => ImplementsInterface::class,
+        'secondInterface' => SecondInterfaceImplementation::class,
     ],
 )]
-interface SomeInterface
-{
-}
+interface SomeInterface {}

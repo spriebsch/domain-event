@@ -2,7 +2,6 @@
 
 namespace spriebsch\DomainEvent;
 
-
 use spriebsch\money\Currency;
 
 enum TestSupportedCurrencies: string implements Currency
