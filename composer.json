@@ -15,7 +15,8 @@
     "crell/serde": "^1.6",
     "spriebsch/timestamp": "^1.1",
     "spriebsch/uuid": "^2.0",
-    "spriebsch/filesystem": "^1.0"
+    "spriebsch/filesystem": "^1.0",
+    "spriebsch/money": "^2.1"
   },
   "autoload": {
     "classmap": [

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8e3229b2359036cb46bbbf27d47f1038",
+    "content-hash": "bbf21911e2f7500114021515f6945502",
     "packages": [
         {
             "name": "crell/attributeutils",
@@ -257,6 +257,44 @@
                 "source": "https://github.com/spriebsch/filesystem/tree/1.0.8"
             },
             "time": "2026-03-12T15:36:11+00:00"
+        },
+        {
+            "name": "spriebsch/money",
+            "version": "2.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spriebsch/money.git",
+                "reference": "c915bfb1b20ae8833ddda5095d5777a98b9cc5f9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spriebsch/money/zipball/c915bfb1b20ae8833ddda5095d5777a98b9cc5f9",
+                "reference": "c915bfb1b20ae8833ddda5095d5777a98b9cc5f9",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.4"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Stefan Priebsch",
+                    "email": "stefan@priebsch.de",
+                    "homepage": "https://www.priebsch.de"
+                }
+            ],
+            "description": "The Money library for PHP",
+            "support": {
+                "issues": "https://github.com/spriebsch/money/issues",
+                "source": "https://github.com/spriebsch/money/tree/2.1.0"
+            },
+            "time": "2025-10-02T06:17:29+00:00"
         },
         {
             "name": "spriebsch/timestamp",
