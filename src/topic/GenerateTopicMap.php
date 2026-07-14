@@ -61,7 +61,10 @@ final readonly class GenerateTopicMap
 
         file_put_contents(
             $directory . '/TopicMap.php',
-            '<?php return ' . var_export($result, true) . ';'
+            '<?php' . PHP_EOL . PHP_EOL .
+            '// @codeCoverageIgnoreStart' . PHP_EOL .
+            'return ' . var_export($result, true) . ';' . PHP_EOL .
+            '// @codeCoverageIgnoreEnd' . PHP_EOL
         );
     }
 }

@@ -69,6 +69,11 @@ final class GenerateTopicMapTest extends TestCase
         $this->assertArrayHasKey('spriebsch.domainEvent.topicmap.c', $result);
         $classC = 'spriebsch\DomainEvent\C';
         $this->assertSame($classC, $result['spriebsch.domainEvent.topicmap.c']);
+
+        $content = file_get_contents($map);
+        $this->assertIsString($content);
+        $this->assertStringContainsString('// @codeCoverageIgnoreStart', $content);
+        $this->assertStringContainsString('// @codeCoverageIgnoreEnd', $content);
     }
 
     public function test_for_throws_exception_when_directory_does_not_exist(): void
