@@ -13,6 +13,7 @@ use spriebsch\timestamp\Timestamp;
 #[UsesClass(Topic::class)]
 #[UsesClass(Envelope::class)]
 #[UsesClass(JsonDomainEventDeserializer::class)]
+#[UsesClass(JsonDomainEventSerializer::class)]
 final class PayloadTest extends TestCase
 {
     public function test_can_be_serialized_and_unserialized(): void
@@ -54,7 +55,7 @@ final class PayloadTest extends TestCase
         $envelope = Envelope::from($event);
         $payload = $envelope->payload();
 
-        $json = $payload->asJson();
+        $json = (new JsonDomainEventSerializer())->serialize($event);
         $persistedAt = Timestamp::generate();
 
         $recreated = Envelope::fromStorage(

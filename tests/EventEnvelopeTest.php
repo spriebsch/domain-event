@@ -14,6 +14,7 @@ use spriebsch\timestamp\Timestamp;
 #[UsesClass(Topic::class)]
 #[UsesClass(SchemaVersion::class)]
 #[UsesClass(JsonDomainEventDeserializer::class)]
+#[UsesClass(JsonDomainEventSerializer::class)]
 final class EventEnvelopeTest extends TestCase
 {
     public function test_wraps_event(): void
@@ -97,11 +98,13 @@ final class EventEnvelopeTest extends TestCase
 
         $envelope = Envelope::from($event);
 
+        $json = (new JsonDomainEventSerializer())->serialize($event);
+
         $loaded = Envelope::fromStorage(
             $envelope->eventId(),
             $receivedAt,
             $persistedAt,
-            $envelope->payload()->asJson(),
+            $json,
             SimpleEvent::class,
             $topic,
         );
@@ -131,8 +134,7 @@ final class EventEnvelopeTest extends TestCase
         $receivedAt = Timestamp::generate();
         $persistedAt = Timestamp::generate();
         $event = new SimpleEvent();
-        /** @var string $json */
-        $json = (new \Crell\Serde\SerdeCommon())->serialize($event, 'json');
+        $json = (new JsonDomainEventSerializer())->serialize($event);
 
         $envelope = Envelope::fromStorage(
             EventId::generate(),

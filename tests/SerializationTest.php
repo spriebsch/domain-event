@@ -2,21 +2,23 @@
 
 namespace spriebsch\DomainEvent;
 
-use Crell\Serde\SerdeCommon;
-use Crell\Serde\TypeMap;
-use PHPUnit\Framework\Attributes\CoversNothing;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use spriebsch\money\Amount;
 use spriebsch\money\Currency;
 use spriebsch\money\Money;
 
-#[CoversNothing]
+#[CoversClass(JsonDomainEventSerializer::class)]
+#[CoversClass(JsonDomainEventDeserializer::class)]
+#[UsesClass(AbstractId::class)]
 class SerializationTest extends TestCase
 {
     public function test_serde_serializes_and_deserializes_object(): void
     {
         $id = TestId::generate();
-        $serde = new SerdeCommon();
+        $serializer = new JsonDomainEventSerializer();
+        $deserializer = new JsonDomainEventDeserializer();
 
         $object = new ComplexEvent(
             $id,
@@ -50,9 +52,9 @@ class SerializationTest extends TestCase
             new SecondInterfaceImplementation(42),
         );
 
-        $jsonString = $serde->serialize($object, format: 'json');
+        $jsonString = $serializer->serialize($object);
 
-        $deserializedObject = $serde->deserialize($jsonString, from: 'json', to: ComplexEvent::class);
+        $deserializedObject = $deserializer->deserialize($jsonString, ComplexEvent::class);
 
         $this->assertEquals($object, $deserializedObject);
     }

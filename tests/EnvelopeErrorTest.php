@@ -12,6 +12,7 @@ use PHPUnit\Framework\TestCase;
 #[UsesClass(Payload::class)]
 #[UsesClass(Topic::class)]
 #[UsesClass(JsonDomainEventDeserializer::class)]
+#[UsesClass(JsonDomainEventSerializer::class)]
 final class EnvelopeErrorTest extends TestCase
 {
     public function test_creating_envelope_without_topic_attribute_throws(): void
@@ -48,8 +49,7 @@ final class EnvelopeErrorTest extends TestCase
         $event = new SimpleEvent();
         $receivedAt = \spriebsch\timestamp\Timestamp::generate();
         $persistedAt = \spriebsch\timestamp\Timestamp::generate();
-        /** @var string $json */
-        $json = (new \Crell\Serde\SerdeCommon())->serialize($event, 'json');
+        $json = (new JsonDomainEventSerializer())->serialize($event);
 
         $envelope = Envelope::fromStorage(
             EventId::generate(),
