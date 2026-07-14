@@ -32,11 +32,14 @@ final class EnvelopeErrorTest extends TestCase
         $envelope->correlationId();
     }
 
-    public function test_correlationId_returns_null_when_method_returns_wrong_type(): void
+    public function test_correlationId_throws_exception_when_correlation_id_is_no_abstract_id(): void
     {
         $envelope = Envelope::from(new EventWithWrongCorrelationIdType());
 
-        $this->assertNull($envelope->correlationId());
+        $this->expectException(\RuntimeException::class);
+        $this->expectExceptionMessage('CorrelationId does not extend AbstractId');
+
+        $envelope->correlationId();
     }
 
     public function test_determineTopic_returns_topic_when_passed_in(): void

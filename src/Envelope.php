@@ -15,7 +15,7 @@ final readonly class Envelope
     private function __construct(
         private EventId        $eventId,
         private Timestamp      $receivedAt,
-        DomainEvent            $event,
+        private DomainEvent    $event,
         ?Topic                 $topic,
         private ?CausationId   $causationId,
         private ?SchemaVersion $schemaVersion,
@@ -81,7 +81,7 @@ final readonly class Envelope
 
     public function correlationId(): ?CorrelationId
     {
-        $reflection = new ReflectionClass($this->payload()->event());
+        $reflection = new ReflectionClass($this->event);
         $methods = $reflection->getMethods();
 
         foreach ($methods as $method) {
@@ -93,9 +93,9 @@ final readonly class Envelope
 
             if (count($attributes) === 1) {
                 $idMethod = $method->getName();
-                $id = $this->payload()->event()->$idMethod();
+                $id = $this->event->$idMethod();
                 if (!$id instanceof AbstractId) {
-                    return null; // Unexpected return type; ignore
+                    throw new RuntimeException('CorrelationId does not extend AbstractId');
                 }
 
                 return CorrelationId::fromUUID($id->asUUID());
