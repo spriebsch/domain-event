@@ -6,6 +6,7 @@ namespace spriebsch\DomainEvent;
 final readonly class EventWithTwoCorrelationIds implements DomainEvent
 {
     #[UseAsCorrelationId]
+    // @phpstan-ignore attribute.nonRepeatable (intentional invalid test fixture)
     #[UseAsCorrelationId]
     public function idA(): TestId
     {
