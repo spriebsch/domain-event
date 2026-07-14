@@ -3,11 +3,11 @@
 namespace spriebsch\DomainEvent;
 
 use Crell\Serde\SerdeCommon;
+use Crell\Serde\TypeMap;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\TestCase;
 use spriebsch\money\Amount;
 use spriebsch\money\Currency;
-use spriebsch\money\Fraction;
 use spriebsch\money\Money;
 
 #[CoversNothing]
@@ -45,26 +45,37 @@ class SerializationTest extends TestCase
                 null,
                 null,
                 null,
-            )
+            ),
+            new ImplementsInterface('the-string'),
+            new SecondInterfaceImplementation(42),
         );
 
         $jsonString = $serde->serialize($object, format: 'json');
         $deserializedObject = $serde->deserialize($jsonString, from: 'json', to: ComplexEvent::class);
+
         $this->assertEquals($object, $deserializedObject);
     }
 
     public function test_serde_serializes_and_deserializes_object_with_money(): void
     {
         $id = TestId::generate();
-        $serde = new SerdeCommon();
+
+        $serde = new SerdeCommon(
+            typeMaps: [
+                          Currency::class => new CurrencyTypeMap(),
+                      ]
+        );
 
         $object = new EventWithMoney(
             $id,
             Money::from(Amount::cents(100), TestSupportedCurrencies::EUR)
         );
-        
+
         $jsonString = $serde->serialize($object, format: 'json');
+        
         $deserializedObject = $serde->deserialize($jsonString, from: 'json', to: EventWithMoney::class);
-        $this->assertEquals($object, $deserializedObject);
+
+        $this->assertEquals($object->id(), $deserializedObject->id());
+        $this->assertTrue($object->money()->equals($deserializedObject->money()));
     }
 }

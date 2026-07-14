@@ -46,7 +46,9 @@ final class PayloadTest extends TestCase
                 null,
                 null,
                 null,
-            )
+            ),
+            new ImplementsInterface('the-string'),
+            new SecondInterfaceImplementation(42),
         );
 
         $envelope = Envelope::from($event);

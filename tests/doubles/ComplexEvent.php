@@ -2,8 +2,6 @@
 
 namespace spriebsch\DomainEvent;
 
-use Crell\Serde\Attributes\StaticTypeMap;
-
 #[MapToTopic('spriebsch.domainEvent.test.complex')]
 final readonly class ComplexEvent implements TestEvent
 {
@@ -19,9 +17,10 @@ final readonly class ComplexEvent implements TestEvent
         private array           $array,
         private SomeEnum        $enum,
         private SomeBackedEnum  $backedEnum,
-        #[StaticTypeMap(key: 'type', map: ['someValue' => SomeValueObject::class])]
         private SomeValueObject $valueObject,
         private Nullable        $nullableTest,
+        private SomeInterface   $someInterface,
+        private SomeInterface   $secondInterfaceImplementation,
     ) {}
 
     #[UseAsCorrelationId]
@@ -84,5 +83,15 @@ final readonly class ComplexEvent implements TestEvent
     public function nullableTest(): Nullable
     {
         return $this->nullableTest;
+    }
+
+    public function someInterface(): SomeInterface
+    {
+        return $this->someInterface;
+    }
+
+    public function secondInterfaceImplementation(): SomeInterface
+    {
+        return $this->secondInterfaceImplementation;
     }
 }
