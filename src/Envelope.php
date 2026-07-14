@@ -137,6 +137,11 @@ final readonly class Envelope
         return $this->event;
     }
 
+    public function eventJson(): string
+    {
+        return new JsonDomainEventSerializer()->serialize($this->event);
+    }
+
     private function determineTopic(?Topic $topic, DomainEvent $event): Topic
     {
         if ($topic !== null) {
