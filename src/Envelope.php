@@ -132,7 +132,7 @@ final readonly class Envelope
         return $this->persistedAt;
     }
 
-    public function payload(): DomainEvent
+    public function event(): DomainEvent
     {
         return $this->event;
     }

@@ -21,7 +21,7 @@ final class EventEnvelopeTest extends TestCase
         $event = new SimpleEvent();
         $envelope = Envelope::from($event);
 
-        $this->assertSame($event, $envelope->payload());
+        $this->assertSame($event, $envelope->event());
     }
 
     public function test_has_EventId(): void
