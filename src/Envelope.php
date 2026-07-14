@@ -10,7 +10,6 @@ final readonly class Envelope
 {
     private ?Timestamp $persistedAt;
     private Topic $topic;
-    private Payload $payload;
 
     private function __construct(
         private EventId        $eventId,
@@ -24,7 +23,6 @@ final readonly class Envelope
     {
         $this->topic = $this->determineTopic($topic, $event);
         $this->persistedAt = $persistedAt;
-        $this->payload = new Payload($this, $event);
     }
 
     public static function from(
@@ -134,9 +132,9 @@ final readonly class Envelope
         return $this->persistedAt;
     }
 
-    public function payload(): Payload
+    public function payload(): DomainEvent
     {
-        return $this->payload;
+        return $this->event;
     }
 
     private function determineTopic(?Topic $topic, DomainEvent $event): Topic

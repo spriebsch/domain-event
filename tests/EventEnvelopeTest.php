@@ -10,7 +10,6 @@ use spriebsch\timestamp\Timestamp;
 #[CoversClass(Envelope::class)]
 #[UsesClass(AbstractId::class)]
 #[UsesClass(MapToTopic::class)]
-#[UsesClass(Payload::class)]
 #[UsesClass(Topic::class)]
 #[UsesClass(SchemaVersion::class)]
 #[UsesClass(JsonDomainEventDeserializer::class)]
@@ -22,7 +21,7 @@ final class EventEnvelopeTest extends TestCase
         $event = new SimpleEvent();
         $envelope = Envelope::from($event);
 
-        $this->assertSame($event, $envelope->payload()->event());
+        $this->assertSame($event, $envelope->payload());
     }
 
     public function test_has_EventId(): void

@@ -9,7 +9,6 @@ use PHPUnit\Framework\TestCase;
 #[CoversClass(Topic::class)]
 #[UsesClass(AbstractId::class)]
 #[UsesClass(MapToTopic::class)]
-#[UsesClass(Payload::class)]
 #[UsesClass(JsonDomainEventDeserializer::class)]
 final class TopicTest extends TestCase
 {
