@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bbf21911e2f7500114021515f6945502",
+    "content-hash": "52a40128f3dc24b5e30f386623871b53",
     "packages": [
         {
             "name": "crell/attributeutils",
@@ -259,44 +259,6 @@
             "time": "2026-03-12T15:36:11+00:00"
         },
         {
-            "name": "spriebsch/money",
-            "version": "2.2.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/spriebsch/money.git",
-                "reference": "322138d582c2d1c0d2aaa68880f97ddaf0ebc260"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/spriebsch/money/zipball/322138d582c2d1c0d2aaa68880f97ddaf0ebc260",
-                "reference": "322138d582c2d1c0d2aaa68880f97ddaf0ebc260",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=8.5"
-            },
-            "type": "library",
-            "autoload": {
-                "classmap": [
-                    "src"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "authors": [
-                {
-                    "name": "Stefan Priebsch",
-                    "email": "stefan@priebsch.de",
-                    "homepage": "https://www.priebsch.de"
-                }
-            ],
-            "description": "Money, modeled correctly.",
-            "support": {
-                "issues": "https://github.com/spriebsch/money/issues",
-                "source": "https://github.com/spriebsch/money/tree/2.2.0"
-            },
-            "time": "2026-07-14T20:04:56+00:00"
-        },
-        {
             "name": "spriebsch/timestamp",
             "version": "1.1.1",
             "source": {
@@ -340,16 +302,16 @@
         },
         {
             "name": "spriebsch/uuid",
-            "version": "2.0.0",
+            "version": "2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spriebsch/UUID.git",
-                "reference": "7dad6af3d70c42a0596e8cc40904a29b24c79fbb"
+                "reference": "34a9d5b5e401f7b44ffe233dd43fbb2f086d9a1d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spriebsch/UUID/zipball/7dad6af3d70c42a0596e8cc40904a29b24c79fbb",
-                "reference": "7dad6af3d70c42a0596e8cc40904a29b24c79fbb",
+                "url": "https://api.github.com/repos/spriebsch/UUID/zipball/34a9d5b5e401f7b44ffe233dd43fbb2f086d9a1d",
+                "reference": "34a9d5b5e401f7b44ffe233dd43fbb2f086d9a1d",
                 "shasum": ""
             },
             "require": {
@@ -375,9 +337,9 @@
             "description": "A fast and simple no-frills UUIDv4 implementation.",
             "support": {
                 "issues": "https://github.com/spriebsch/UUID/issues",
-                "source": "https://github.com/spriebsch/UUID/tree/2.0.0"
+                "source": "https://github.com/spriebsch/UUID/tree/2.1.0"
             },
-            "time": "2025-10-02T12:02:35+00:00"
+            "time": "2026-07-28T08:03:47+00:00"
         }
     ],
     "packages-dev": [],
