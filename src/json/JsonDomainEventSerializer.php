@@ -2,13 +2,11 @@
 
 namespace spriebsch\DomainEvent;
 
-use Crell\Serde\SerdeCommon;
-
 final readonly class JsonDomainEventSerializer implements DomainEventSerializer
 {
     public function serialize(DomainEvent $event): string
     {
-        $json = new SerdeCommon()->serialize($event, format: 'json');
+        $json = SharedSerde::instance()->serialize($event, format: 'json');
         assert(is_string($json));
         return $json;
     }

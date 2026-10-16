@@ -9,6 +9,7 @@ use PHPUnit\Framework\TestCase;
 #[CoversClass(JsonDomainEventSerializer::class)]
 #[CoversClass(JsonDomainEventDeserializer::class)]
 #[UsesClass(AbstractId::class)]
+#[UsesClass(SharedSerde::class)]
 final class JsonSerdeTest extends TestCase
 {
     public function test_serializes_domain_event_to_json(): void

@@ -14,6 +14,7 @@ use spriebsch\timestamp\Timestamp;
 #[UsesClass(SchemaVersion::class)]
 #[UsesClass(JsonDomainEventDeserializer::class)]
 #[UsesClass(JsonDomainEventSerializer::class)]
+#[UsesClass(SharedSerde::class)]
 final class EventEnvelopeTest extends TestCase
 {
     public function test_wraps_event(): void
