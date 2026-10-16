@@ -12,6 +12,7 @@ use PHPUnit\Framework\TestCase;
 #[UsesClass(Topic::class)]
 #[UsesClass(JsonDomainEventDeserializer::class)]
 #[UsesClass(JsonDomainEventSerializer::class)]
+#[UsesClass(SharedSerde::class)]
 final class EnvelopeErrorTest extends TestCase
 {
     public function test_creating_envelope_without_topic_attribute_throws(): void

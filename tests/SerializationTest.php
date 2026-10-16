@@ -12,6 +12,7 @@ use spriebsch\money\Money;
 #[CoversClass(JsonDomainEventSerializer::class)]
 #[CoversClass(JsonDomainEventDeserializer::class)]
 #[UsesClass(AbstractId::class)]
+#[UsesClass(SharedSerde::class)]
 class SerializationTest extends TestCase
 {
     public function test_serde_serializes_and_deserializes_object(): void
