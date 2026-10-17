@@ -11,7 +11,7 @@ Domain Events, Done Right.
     - `Topic`
     - optional `CausationId` and `CorrelationId` for tracing
     - an optional `SchemaVersion` to support event schema versioning
-- **Serialization**: Built-in JSON serialization and deserialization (powered by `Crell/Serde`).
+- **Serialization**: Domain events define their JSON payloads with `JsonSerializable`, `asArray()`, and `fromJson()`.
 - **Event Sourcing Support**: Traits to easily implement event recording and applying in your code.
 - **Attribute-based Configuration**: Use PHP 8 attributes to map events to topics and identify correlation IDs.
 - **Topic Mapping**: Tools to generate and use a mapping between topics and PHP classes.
@@ -24,14 +24,33 @@ Implement the `DomainEvent` interface and use the `MapToTopic` attribute.
 
 ```php
 use spriebsch\DomainEvent\DomainEvent;
+use spriebsch\DomainEvent\JsonDomainEventTrait;
 use spriebsch\DomainEvent\MapToTopic;
 
 #[MapToTopic('my-vendor.my-domain.my-context.something_happened')]
 final readonly class SomethingHappened implements DomainEvent
 {
+    use JsonDomainEventTrait;
+
     public function __construct(
         public string $data
     ) {}
+
+    public function asArray(): array
+    {
+        return ['data' => $this->data];
+    }
+
+    public static function fromJson(string $json): static
+    {
+        $payload = json_decode($json, true, 512, JSON_THROW_ON_ERROR);
+
+        if (!is_array($payload) || !isset($payload['data']) || !is_string($payload['data'])) {
+            throw new InvalidArgumentException('Expected a string data field');
+        }
+
+        return new static($payload['data']);
+    }
 }
 ```
 
@@ -53,10 +72,15 @@ echo $envelope->eventId()->asString(); // (a random UUIDv4)
 
 ```php
 use spriebsch\DomainEvent\JsonDomainEventSerializer;
+use spriebsch\DomainEvent\JsonDomainEventDeserializer;
 
 $serializer = new JsonDomainEventSerializer();
 $json = $serializer->serialize($event);
+$restored = new JsonDomainEventDeserializer()->deserialize($json, SomethingHappened::class);
 ```
+
+`json_encode($event, JSON_THROW_ON_ERROR)` also works directly. Each event controls its payload
+format; `JsonDomainEventTrait` makes `jsonSerialize()` return `asArray()`.
 
 ### 4. Event Sourcing
 

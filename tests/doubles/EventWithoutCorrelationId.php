@@ -5,4 +5,5 @@ namespace spriebsch\DomainEvent;
 #[MapToTopic('spriebsch.domainEvent.test.simple')]
 final readonly class EventWithoutCorrelationId implements DomainEvent
 {
+    use EmptyJsonEventTrait;
 }

@@ -2,12 +2,6 @@
 
 namespace spriebsch\DomainEvent;
 
-use Crell\Serde\Attributes\StaticTypeMap;
-
-#[StaticTypeMap(key: 'type', map: [
-    'simpleEvent'  => SimpleEvent::class,
-    'complexEvent' => ComplexEvent::class,
-])]
 interface TestEvent extends DomainEvent
 {
     public function id(): TestId;

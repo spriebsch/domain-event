@@ -4,6 +4,7 @@ namespace spriebsch\DomainEvent;
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\UsesClass;
+use PHPUnit\Framework\Attributes\UsesTrait;
 use PHPUnit\Framework\TestCase;
 
 #[CoversClass(Envelope::class)]
@@ -12,7 +13,7 @@ use PHPUnit\Framework\TestCase;
 #[UsesClass(Topic::class)]
 #[UsesClass(JsonDomainEventDeserializer::class)]
 #[UsesClass(JsonDomainEventSerializer::class)]
-#[UsesClass(SharedSerde::class)]
+#[UsesTrait(JsonDomainEventTrait::class)]
 final class EnvelopeErrorTest extends TestCase
 {
     public function test_creating_envelope_without_topic_attribute_throws(): void

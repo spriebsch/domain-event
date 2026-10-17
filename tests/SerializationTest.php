@@ -4,18 +4,16 @@ namespace spriebsch\DomainEvent;
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\UsesClass;
+use PHPUnit\Framework\Attributes\UsesTrait;
 use PHPUnit\Framework\TestCase;
-use spriebsch\money\Amount;
-use spriebsch\money\Currency;
-use spriebsch\money\Money;
 
 #[CoversClass(JsonDomainEventSerializer::class)]
 #[CoversClass(JsonDomainEventDeserializer::class)]
 #[UsesClass(AbstractId::class)]
-#[UsesClass(SharedSerde::class)]
+#[UsesTrait(JsonDomainEventTrait::class)]
 class SerializationTest extends TestCase
 {
-    public function test_serde_serializes_and_deserializes_object(): void
+    public function test_serializes_and_deserializes_complex_event(): void
     {
         $id = TestId::generate();
         $serializer = new JsonDomainEventSerializer();

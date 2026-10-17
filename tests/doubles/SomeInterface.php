@@ -2,13 +2,4 @@
 
 namespace spriebsch\DomainEvent;
 
-use Crell\Serde\Attributes\StaticTypeMap;
-
-#[StaticTypeMap(
-    key: 'type',
-    map: [
-        'interface'       => ImplementsInterface::class,
-        'secondInterface' => SecondInterfaceImplementation::class,
-    ],
-)]
 interface SomeInterface {}

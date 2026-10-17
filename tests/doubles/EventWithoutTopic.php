@@ -5,4 +5,5 @@ namespace spriebsch\DomainEvent;
 // Intentionally no MapToTopic attribute
 final readonly class EventWithoutTopic implements DomainEvent
 {
+    use EmptyJsonEventTrait;
 }

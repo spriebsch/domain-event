@@ -6,8 +6,6 @@ final readonly class JsonDomainEventSerializer implements DomainEventSerializer
 {
     public function serialize(DomainEvent $event): string
     {
-        $json = SharedSerde::instance()->serialize($event, format: 'json');
-        assert(is_string($json));
-        return $json;
+        return json_encode($event, JSON_THROW_ON_ERROR);
     }
 }

@@ -5,6 +5,8 @@ namespace spriebsch\DomainEvent;
 #[MapToTopic('spriebsch.domainEvent.test.twoCorrelationIds')]
 final readonly class EventWithTwoCorrelationIds implements DomainEvent
 {
+    use EmptyJsonEventTrait;
+
     #[UseAsCorrelationId]
     // @phpstan-ignore attribute.nonRepeatable (intentional invalid test fixture)
     #[UseAsCorrelationId]

@@ -7,12 +7,10 @@ final readonly class JsonDomainEventDeserializer implements DomainEventDeseriali
     /** @param class-string<DomainEvent> $class */
     public function deserialize(string $domainEvent, string $class): DomainEvent
     {
-        $event = SharedSerde::instance()->deserialize($domainEvent, from: 'json', to: $class);
-
-        if (!$event instanceof DomainEvent) {
-             throw new \RuntimeException('Deserialized object is not a domain event');
+        if (!is_a($class, DomainEvent::class, true)) {
+            throw new \InvalidArgumentException('Class must implement DomainEvent');
         }
 
-        return $event;
+        return $class::fromJson($domainEvent);
     }
 }

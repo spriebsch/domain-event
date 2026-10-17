@@ -5,6 +5,8 @@ namespace spriebsch\DomainEvent;
 #[MapToTopic('spriebsch.domainEvent.topicmap.b')]
 final readonly class B implements DomainEvent
 {
+    use IdJsonEventTrait;
+
     public function __construct(
         private TestId $id
     ) {}

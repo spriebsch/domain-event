@@ -12,7 +12,6 @@
   "license": "BSD-3-Clause",
   "require": {
     "php": ">=8.5",
-    "crell/serde": "^1.6",
     "spriebsch/timestamp": "^1.1",
     "spriebsch/uuid": "^2.1",
     "spriebsch/filesystem": "^1.0"

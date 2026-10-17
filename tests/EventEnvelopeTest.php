@@ -4,6 +4,7 @@ namespace spriebsch\DomainEvent;
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\UsesClass;
+use PHPUnit\Framework\Attributes\UsesTrait;
 use PHPUnit\Framework\TestCase;
 use spriebsch\timestamp\Timestamp;
 
@@ -14,7 +15,7 @@ use spriebsch\timestamp\Timestamp;
 #[UsesClass(SchemaVersion::class)]
 #[UsesClass(JsonDomainEventDeserializer::class)]
 #[UsesClass(JsonDomainEventSerializer::class)]
-#[UsesClass(SharedSerde::class)]
+#[UsesTrait(JsonDomainEventTrait::class)]
 final class EventEnvelopeTest extends TestCase
 {
     public function test_wraps_event(): void
@@ -110,6 +111,9 @@ final class EventEnvelopeTest extends TestCase
         );
 
         $this->assertTrue($loaded->isPersisted());
+        $loadedEvent = $loaded->event();
+        $this->assertInstanceOf(SimpleEvent::class, $loadedEvent);
+        $this->assertSame($event->id()->asString(), $loadedEvent->id()->asString());
     }
 
     public function test_receivedAt_is_generated_on_envelope_creation(): void
@@ -146,6 +150,13 @@ final class EventEnvelopeTest extends TestCase
         );
 
         $this->assertSame($persistedAt, $envelope->persistedAt());
+    }
+
+    public function test_eventJson_uses_the_events_payload(): void
+    {
+        $event = new EventA(TestId::generate());
+
+        $this->assertSame(json_encode($event, JSON_THROW_ON_ERROR), Envelope::from($event)->eventJson());
     }
 
     public function test_topic_returns_topic(): void

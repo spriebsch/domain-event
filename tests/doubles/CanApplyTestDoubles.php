@@ -14,6 +14,7 @@ final class TestAggregate
 
 final class EventWithoutApply implements DomainEvent
 {
+    use EmptyJsonEventTrait;
 }
 
 final class TestAggregateWithNoApply

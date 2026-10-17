@@ -41,10 +41,10 @@ final class GenerateTopicMapTest extends TestCase
             mkdir($directory, 0777, true);
         }
 
-        file_put_contents($directory . '/A.php', '<?php namespace spriebsch\DomainEvent; #[MapToTopic("spriebsch.domainEvent.topicmap.a")] final class A implements DomainEvent {}');
+        file_put_contents($directory . '/A.php', '<?php namespace spriebsch\DomainEvent; #[MapToTopic("spriebsch.domainEvent.topicmap.a")] final class A implements DomainEvent { use EmptyJsonEventTrait; }');
         mkdir($directory . '/nested/subdirectory', 0777, true);
-        file_put_contents($directory . '/nested/B.php', '<?php namespace spriebsch\DomainEvent; #[MapToTopic("spriebsch.domainEvent.topicmap.b")] final class B implements DomainEvent {}');
-        file_put_contents($directory . '/nested/subdirectory/C.php', '<?php namespace spriebsch\DomainEvent; #[MapToTopic("spriebsch.domainEvent.topicmap.c")] final class C implements DomainEvent {}');
+        file_put_contents($directory . '/nested/B.php', '<?php namespace spriebsch\DomainEvent; #[MapToTopic("spriebsch.domainEvent.topicmap.b")] final class B implements DomainEvent { use EmptyJsonEventTrait; }');
+        file_put_contents($directory . '/nested/subdirectory/C.php', '<?php namespace spriebsch\DomainEvent; #[MapToTopic("spriebsch.domainEvent.topicmap.c")] final class C implements DomainEvent { use EmptyJsonEventTrait; }');
 
         $map = $directory . '/TopicMap.php';
 
@@ -98,7 +98,7 @@ use spriebsch\DomainEvent\DomainEvent;
 use spriebsch\DomainEvent\MapToTopic;
 
 #[MapToTopic("valid.event")]
-final class ValidEvent implements DomainEvent {}');
+final class ValidEvent implements DomainEvent { use \spriebsch\DomainEvent\EmptyJsonEventTrait; }');
 
         GenerateTopicMap::for($tempDir);
 
@@ -126,7 +126,7 @@ final class ValidEvent implements DomainEvent {}');
 namespace spriebsch\DomainEvent\TempNoAttr;
 use spriebsch\DomainEvent\DomainEvent;
 
-final class NoAttrEvent implements DomainEvent {}');
+final class NoAttrEvent implements DomainEvent { use \spriebsch\DomainEvent\EmptyJsonEventTrait; }');
 
         GenerateTopicMap::for($tempDir);
 
